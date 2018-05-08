@@ -9,7 +9,10 @@ const INIT_SNAKE_LEN: u32 = 3;
 
 #[derive(Copy, Clone, PartialEq)]
 pub enum Direction {
-    Up, Down, Left, Right
+    Up,
+    Down,
+    Left,
+    Right,
 }
 
 impl Direction {
@@ -26,7 +29,7 @@ impl Direction {
 #[derive(Copy, Clone)]
 struct Block {
     x: i32,
-    y: i32
+    y: i32,
 }
 
 impl Block {
@@ -38,7 +41,7 @@ impl Block {
 pub struct Snake {
     dir: Direction,
     body: LinkedList<Block>,
-    tail: Option<Block>
+    tail: Option<Block>,
 }
 
 impl Snake {
@@ -50,8 +53,9 @@ impl Snake {
         }
 
         Snake {
-            body, dir: Direction::Right,
-            tail: None
+            body,
+            dir: Direction::Right,
+            tail: None,
         }
     }
 
@@ -69,23 +73,15 @@ impl Snake {
     pub fn move_dir(&mut self, dir: Option<Direction>) {
         match dir {
             Some(d) => self.dir = d,
-            None => ()
+            None => (),
         };
 
         let (x, y) = self.head_position();
         let new_block = match self.dir {
-            Direction::Up => Block {
-                x, y: y - 1
-            },
-            Direction::Down => Block {
-                x, y: y + 1
-            },
-            Direction::Left => Block {
-                x: x - 1, y
-            },
-            Direction::Right => Block {
-                x: x + 1, y
-            }
+            Direction::Up => Block { x, y: y - 1 },
+            Direction::Down => Block { x, y: y + 1 },
+            Direction::Left => Block { x: x - 1, y },
+            Direction::Right => Block { x: x + 1, y },
         };
 
         self.body.push_back(new_block);
@@ -101,21 +97,21 @@ impl Snake {
 
         let move_dir = match dir {
             Some(d) => d,
-            None => self.dir
+            None => self.dir,
         };
 
         match move_dir {
             Direction::Up => (x, y - 1),
             Direction::Down => (x, y + 1),
             Direction::Left => (x - 1, y),
-            Direction::Right => (x + 1, y)
+            Direction::Right => (x + 1, y),
         }
     }
 
     pub fn restore_tail(&mut self) {
         match self.tail {
             Some(tail) => self.body.push_back(tail.clone()),
-            None => ()
+            None => (),
         };
     }
 
@@ -125,7 +121,6 @@ impl Snake {
             if x == block.x && y == block.y {
                 return true;
             }
-
 
             pos += 1;
             if pos == self.body.len() {

@@ -9,22 +9,35 @@ pub fn to_cood(x: i32, y: i32) -> (f64, f64) {
 
 pub fn draw_block(color: Color, x: i32, y: i32, con: &Context, g: &mut G2d) {
     let (gui_x, gui_y) = to_cood(x, y);
-    
+
     rectangle(
-        color, 
+        color,
         [gui_x, gui_y, BLOCK_SIZE, BLOCK_SIZE],
         con.transform,
-        g
+        g,
     );
 }
 
-pub fn draw_rect(color: Color, x: i32, y: i32, width: i32, height: f64, con: &Context, g: &mut G2d) {
+pub fn draw_rect(
+    color: Color,
+    x: i32,
+    y: i32,
+    width: i32,
+    height: f64,
+    con: &Context,
+    g: &mut G2d,
+) {
     let (gui_x, gui_y) = to_cood(x, y);
-    
+
     rectangle(
-        color, 
-        [gui_x, gui_y, BLOCK_SIZE * (width as f64), BLOCK_SIZE * (height as f64)],
+        color,
+        [
+            gui_x,
+            gui_y,
+            BLOCK_SIZE * (width as f64),
+            BLOCK_SIZE * (height as f64),
+        ],
         con.transform,
-        g
+        g,
     );
 }
