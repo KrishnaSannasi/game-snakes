@@ -28,12 +28,12 @@ impl Direction {
 
 #[derive(Copy, Clone)]
 struct Block {
-    x: i32,
-    y: i32,
+    x: u32,
+    y: u32,
 }
 
 impl Block {
-    fn new(x: i32, y: i32) -> Block {
+    fn new(x: u32, y: u32) -> Block {
         Block { x, y }
     }
 }
@@ -45,11 +45,11 @@ pub struct Snake {
 }
 
 impl Snake {
-    pub fn new(x: i32, y: i32) -> Snake {
+    pub fn new(x: u32, y: u32) -> Snake {
         let mut body = LinkedList::new();
 
         for i in 1..INIT_SNAKE_LEN + 1 {
-            body.push_back(Block::new(x + i as i32, y));
+            body.push_back(Block::new(x + i as u32, y));
         }
 
         Snake {
@@ -65,7 +65,7 @@ impl Snake {
         }
     }
 
-    pub fn head_position(&self) -> (i32, i32) {
+    pub fn head_position(&self) -> (u32, u32) {
         let head = self.body.front().unwrap();
         (head.x, head.y)
     }
@@ -92,7 +92,7 @@ impl Snake {
         self.dir
     }
 
-    pub fn next_head(&self, dir: Option<Direction>) -> (i32, i32) {
+    pub fn next_head(&self, dir: Option<Direction>) -> (u32, u32) {
         let (x, y) = self.head_position();
 
         let move_dir = match dir {
@@ -115,7 +115,7 @@ impl Snake {
         };
     }
 
-    pub fn overlap_tail(&self, x: i32, y: i32) -> bool {
+    pub fn overlap_tail(&self, x: u32, y: u32) -> bool {
         let mut pos = 1;
         for block in &self.body {
             if x == block.x && y == block.y {

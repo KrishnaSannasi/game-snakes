@@ -3,11 +3,11 @@ use piston_window::types::Color;
 
 const BLOCK_SIZE: f64 = 25.0;
 
-pub fn to_cood(x: i32, y: i32) -> (f64, f64) {
+pub fn to_cood(x: u32, y: u32) -> (f64, f64) {
     ((x as f64) * BLOCK_SIZE, (y as f64) * BLOCK_SIZE)
 }
 
-pub fn draw_block(color: Color, x: i32, y: i32, con: &Context, g: &mut G2d) {
+pub fn draw_block(color: Color, x: u32, y: u32, con: &Context, g: &mut G2d) {
     let (gui_x, gui_y) = to_cood(x, y);
 
     rectangle(
@@ -20,10 +20,10 @@ pub fn draw_block(color: Color, x: i32, y: i32, con: &Context, g: &mut G2d) {
 
 pub fn draw_rect(
     color: Color,
-    x: i32,
-    y: i32,
-    width: i32,
-    height: i32,
+    x: u32,
+    y: u32,
+    width: u32,
+    height: u32,
     con: &Context,
     g: &mut G2d,
 ) {

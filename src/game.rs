@@ -16,17 +16,17 @@ const RESTART_TIME: f64 = 1.0;
 
 pub struct Game {
     snake: Snake,
-    food: Option<(i32, i32)>,
+    food: Option<(u32, u32)>,
 
-    width: i32,
-    height: i32,
+    width: u32,
+    height: u32,
 
     game_over: bool,
     waiting_time: f64,
 }
 
 impl Game {
-    pub fn new(width: i32, height: i32) -> Game {
+    pub fn new(width: u32, height: u32) -> Game {
         Game {
             snake: Snake::new(2, 2),
             food: Some((6, 4)),
