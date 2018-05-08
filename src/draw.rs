@@ -23,7 +23,7 @@ pub fn draw_rect(
     x: i32,
     y: i32,
     width: i32,
-    height: f64,
+    height: i32,
     con: &Context,
     g: &mut G2d,
 ) {
