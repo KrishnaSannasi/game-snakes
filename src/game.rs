@@ -54,6 +54,8 @@ impl Game {
             if d == self.snake.head_dir().opp() {
                 return;
             }
+        } else {
+            println!("invalid key pressed! {:?}", key);
         }
 
         self.update_snake(dir);
@@ -79,14 +81,14 @@ impl Game {
     }
 
     pub fn draw(&self, con: &Context, g: &mut G2d) {
+        draw_rect(BORDER_COLOR, 0, 0, self.width, self.height, con, g);
+        draw_rect(FOREGROUND_COLOR, 1, 1, self.width - 2, self.height - 2, con, g);
+    
         self.snake.draw(con, g);
 
         if let Some(food) = self.food {
             draw_block(FOOD_COLOR, food.0, food.1, con, g);
         }
-
-        draw_rect(BORDER_COLOR, 0, 0, self.width, self.height, con, g);
-        draw_rect(FOREGROUND_COLOR, 1, 1, self.width - 2, self.height - 2, con, g);
 
         if self.game_over {
             draw_rect(GAMEOVER_COLOR, 0, 0, self.width, self.height, con, g);
