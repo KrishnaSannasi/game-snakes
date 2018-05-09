@@ -1,8 +1,11 @@
 [package]
 name = "snake"
-version = "0.1.5.1"
+version = "0.1.5-1"
 authors = ["Ozaren <krishna.sd.2012@gmail.com>"]
 
 [dependencies]
 rand = "0.3.18"
 piston_window = "0.74.0"
+
+[profile.release]
+codegen-units = 1

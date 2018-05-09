@@ -17,16 +17,17 @@ fn main() {
     let (width, height) = (30u32, 30u32);
     let (window_width, window_height) = to_coord_u32(width, height);
 
-    let mut window: PistonWindow = WindowSettings::new("Snake", [window_width, window_height])
+    let mut window: PistonWindow = WindowSettings::new("Hello Piston!", (window_width, window_height))
         .exit_on_esc(true)
         .build()
-        .unwrap();
+        .unwrap_or_else(|e| { panic!("Failed to build PistonWindow: {}", e) });
 
     let mut game = Game::new(width, height);
     while let Some(event) = window.next() {
         if let Some(Button::Keyboard(key)) = event.press_args() {
             game.key_pressed(key);
         }
+        
         window.draw_2d(&event, |c, g| {
             clear(BACK_COLOR, g);
             game.draw(&c, g);

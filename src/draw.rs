@@ -42,6 +42,6 @@ pub fn draw_rect(
             BLOCK_SIZE * (height as f64),
         ],
         con.transform,
-        g,
+        g
     );
 }
